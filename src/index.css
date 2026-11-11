@@ -1,0 +1,842 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   CAFEBRARY — TAILWIND CSS v4 THEME CONFIGURATION
+   Modern Heritage: European heritage café architecture + heritage study hall
+   ========================================================================== */
+@theme {
+  /* --- 4. FINAL BRAND COLOUR PALETTE --- */
+  --color-caramel: #C68642;
+  --color-dark-navy: #1F2D44;
+  --color-dusty-rose: #B67C8A;
+  --color-dark-cocoa: #3E2A1F;
+  --color-latte-foam: #F4E7D3;
+
+  /* Aliases for utility ergonomics */
+  --color-navy: #1F2D44;
+  --color-rose: #B67C8A;
+  --color-cocoa: #3E2A1F;
+  --color-latte: #F4E7D3;
+
+  /* Heritage Surface & Border Tones */
+  --color-surface-parchment: #FAF4EB;
+  --color-surface-warm-white: #FFFDFC;
+  --color-surface-muted: #EFE2CF;
+  --color-border-subtle: rgba(62, 42, 31, 0.16);
+  --color-border-medium: rgba(62, 42, 31, 0.28);
+  --color-border-caramel: rgba(198, 134, 66, 0.45);
+  --color-border-navy: rgba(31, 45, 68, 0.25);
+
+  /* --- 5. TYPOGRAPHY SYSTEM ---
+     Bogale: Logo & wordmark only.
+     Sanrello: All major & section headings.
+     The Seasons: Body text, paragraphs, longer reading.
+     Abril Fatface: Supporting subtitles, menu details, seat availability, highlights.
+  */
+  --font-logo: 'Bogale', 'Didot', 'Bodoni MT', 'Cinzel', 'Cinzel Decorative', 'Georgia', serif;
+  --font-heading: 'Sanrello', 'Playfair Display', 'Cormorant Garamond', 'Baskerville', 'Georgia', serif;
+  --font-body: 'The Seasons', 'EB Garamond', 'Garamond', 'Libre Baskerville', 'Georgia', serif;
+  --font-accent: 'Abril Fatface', 'Playfair Display', 'Bodoni MT', 'Didot', 'Georgia', serif;
+
+  /* Architectural Soft Shadows */
+  --shadow-subtle: 0 2px 8px -2px rgba(31, 45, 68, 0.06), 0 1px 3px rgba(62, 42, 31, 0.04);
+  --shadow-elevated: 0 12px 28px -6px rgba(31, 45, 68, 0.08), 0 4px 12px -2px rgba(62, 42, 31, 0.05);
+  --shadow-heritage: 0 20px 40px -10px rgba(31, 45, 68, 0.12), 0 6px 16px -4px rgba(62, 42, 31, 0.08);
+
+  /* Understated Radii (Avoid exaggerated pills) */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-editorial: 8px;
+}
+
+/* ==========================================================================
+   GLOBAL CSS VARIABLES (Root Brand Tokens)
+   ========================================================================== */
+:root {
+  /* Exact Brand Palette & Functional Proportions
+     Caramel: 60% | Dark Navy: 20% | Dusty Rose: 10% | Dark Cocoa: 5% | Latte Foam: 5% */
+  --color-caramel: #C68642;
+  --color-dark-navy: #1F2D44;
+  --color-dusty-rose: #B67C8A;
+  --color-dark-cocoa: #3E2A1F;
+  --color-latte-foam: #F4E7D3;
+
+  /* RGB Components for Transparent Overlays */
+  --color-caramel-rgb: 198, 134, 66;
+  --color-dark-navy-rgb: 31, 45, 68;
+  --color-dusty-rose-rgb: 182, 124, 138;
+  --color-dark-cocoa-rgb: 62, 42, 31;
+  --color-latte-foam-rgb: 244, 231, 211;
+
+  /* Functional Roles */
+  --bg-primary: var(--color-latte-foam);        /* Primary warm background */
+  --bg-surface: #FAF4EB;                        /* Parchment/warm stone surface */
+  --bg-surface-elevated: #FFFDFC;               /* Warm crisp surface */
+  --bg-surface-muted: #EFE2CF;                  /* Subtle recessed background */
+  --bg-surface-dark: var(--color-dark-navy);    /* High-contrast dark navy surfaces */
+  --bg-surface-cocoa: var(--color-dark-cocoa);  /* Deep warm walnut surfaces */
+  --bg-accent: var(--color-caramel);            /* Primary brand accents & highlights */
+
+  --text-primary: var(--color-dark-navy);       /* Navigation & major headings */
+  --text-body: var(--color-dark-cocoa);         /* Body text, long-form reading */
+  --text-muted: #6E5C51;                        /* Descriptions & subtle metadata */
+  --text-caramel: var(--color-caramel);         /* Caramel highlights & selected states */
+  --text-rose: var(--color-dusty-rose);         /* Subtle secondary accents */
+  --text-inverse: var(--color-latte-foam);      /* High-contrast text on dark surfaces */
+  --text-inverse-muted: #D9C5AC;                /* Muted text on dark surfaces */
+
+  --border-hairline: rgba(62, 42, 31, 0.08);
+  --border-subtle: rgba(62, 42, 31, 0.16);
+  --border-medium: rgba(62, 42, 31, 0.28);
+  --border-caramel: rgba(198, 134, 66, 0.45);
+  --border-rose: rgba(182, 124, 138, 0.35);
+  --border-navy: rgba(31, 45, 68, 0.25);
+  --border-inverse: rgba(244, 231, 211, 0.18);
+
+  /* Typography Font Stacks */
+  --font-logo: 'Bogale', 'Didot', 'Bodoni MT', 'Cinzel', 'Cinzel Decorative', 'Georgia', serif;
+  --font-heading: 'Sanrello', 'Playfair Display', 'Cormorant Garamond', 'Baskerville', 'Georgia', serif;
+  --font-body: 'The Seasons', 'EB Garamond', 'Garamond', 'Libre Baskerville', 'Georgia', serif;
+  --font-accent: 'Abril Fatface', 'Playfair Display', 'Bodoni MT', 'Didot', 'Georgia', serif;
+
+  /* Shadows */
+  --shadow-subtle: 0 2px 8px -2px rgba(31, 45, 68, 0.06), 0 1px 3px rgba(62, 42, 31, 0.04);
+  --shadow-elevated: 0 12px 28px -6px rgba(31, 45, 68, 0.08), 0 4px 12px -2px rgba(62, 42, 31, 0.05);
+  --shadow-heritage: 0 20px 40px -10px rgba(31, 45, 68, 0.12), 0 6px 16px -4px rgba(62, 42, 31, 0.08);
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-editorial: 400ms cubic-bezier(0.25, 1, 0.5, 1);
+
+  /* Radii */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-editorial: 8px;
+}
+
+/* ==========================================================================
+   GLOBAL RESET & FOUNDATIONAL BASE STYLES
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background:
+    radial-gradient(circle at top, rgba(198, 134, 66, 0.08), transparent 30%),
+    linear-gradient(180deg, #F8F1E8 0%, var(--bg-primary) 28%, var(--bg-primary) 100%);
+  color: var(--text-body);
+  font-family: var(--font-body);
+  font-size: 1.0625rem; /* 17px - comfortable editorial scale */
+  line-height: 1.68;
+  letter-spacing: 0.01em;
+  font-feature-settings: "kern" 1, "liga" 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+main {
+  display: block;
+}
+
+/* Text Selection: Warm Caramel highlight */
+::selection {
+  background-color: rgba(var(--color-caramel-rgb), 0.28);
+  color: var(--color-dark-navy);
+}
+
+/* ==========================================================================
+   TYPOGRAPHY HIERARCHY
+   Sanrello: All major and section headings
+   The Seasons: Body copy and longer reading content
+   Abril Fatface: Supporting subtitles, labels, seat availability, accents
+   Bogale: CAFEBRARY logo & wordmark ONLY
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin: 0 0 0.55em 0;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 5vw, 3.9rem);
+  line-height: 1.1;
+  letter-spacing: -0.026em;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+  line-height: 1.16;
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  font-size: clamp(1.45rem, 2.2vw, 2rem);
+  line-height: 1.22;
+}
+
+h4 {
+  font-size: clamp(1.15rem, 1.7vw, 1.45rem);
+  line-height: 1.32;
+}
+
+h5 {
+  font-size: 1.1rem;
+  letter-spacing: 0.01em;
+}
+
+h6 {
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+p {
+  margin: 0 0 1.25rem 0;
+  font-family: var(--font-body);
+  color: var(--text-body);
+  max-width: 68ch; /* Prioritize readability and comfortable reading lengths */
+}
+
+p.lead {
+  font-size: clamp(1.125rem, 1.5vw, 1.28rem);
+  line-height: 1.62;
+  color: var(--text-primary);
+  max-width: 60ch;
+}
+
+@media (min-width: 768px) {
+  main section:is(.text-center, [class~="md:text-center"]) p,
+  main section :is(.text-center, [class~="md:text-center"]) p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Specific Typography Roles */
+.font-logo {
+  /* Bogale: CAFEBRARY logo and wordmark ONLY */
+  font-family: var(--font-logo);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.font-heading {
+  /* Sanrello: All major headings & section titles */
+  font-family: var(--font-heading);
+}
+
+.font-body {
+  /* The Seasons: Body text, descriptions, long-form reading */
+  font-family: var(--font-body);
+}
+
+.font-accent {
+  /* Abril Fatface: Supporting typography, subtitles, menu details, seat availability */
+  font-family: var(--font-accent);
+}
+
+/* ==========================================================================
+   REUSABLE INTERACTION & UI CONVENTIONS
+   Understated, confident, heritage-inspired, gentle transitions
+   ========================================================================== */
+
+/* Buttons: Confident, strong contrast, comfortable padding, NO exaggerated pills */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  font-family: var(--font-accent);
+  font-size: 0.9375rem;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  padding: 0.875rem 1.625rem;
+  min-height: 44px; /* Accessible minimum touch target standard */
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-fast),
+    filter var(--transition-base);
+  user-select: none;
+  font-weight: 500;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+/* Primary Button: Caramel surface with Dark Navy contrast */
+.btn-primary {
+  background-color: var(--color-caramel);
+  color: var(--color-latte-foam);
+  border-color: var(--color-caramel);
+  box-shadow: 0 2px 6px rgba(var(--color-caramel-rgb), 0.25);
+}
+
+.btn-primary:hover {
+  background-color: #B57535;
+  border-color: #B57535;
+  box-shadow: 0 4px 12px rgba(var(--color-caramel-rgb), 0.35);
+}
+
+/* Navy Button: Deep heritage contrast */
+.btn-navy {
+  background-color: var(--color-dark-navy);
+  color: var(--color-latte-foam);
+  border-color: var(--color-dark-navy);
+  box-shadow: 0 2px 6px rgba(var(--color-dark-navy-rgb), 0.2);
+}
+
+.btn-navy:hover {
+  background-color: #162133;
+  border-color: var(--color-caramel);
+  color: var(--color-caramel);
+}
+
+/* Cocoa Button: Rich warm walnut surface */
+.btn-cocoa {
+  background-color: var(--color-dark-cocoa);
+  color: var(--color-latte-foam);
+  border-color: var(--color-dark-cocoa);
+  box-shadow: 0 2px 6px rgba(var(--color-dark-cocoa-rgb), 0.25);
+}
+
+.btn-cocoa:hover {
+  background-color: #2F1F16;
+  border-color: var(--color-caramel);
+  color: var(--color-caramel);
+}
+
+/* Rose Button: Thoughtful dusty rose surface */
+.btn-rose {
+  background-color: var(--color-dusty-rose);
+  color: var(--color-latte-foam);
+  border-color: var(--color-dusty-rose);
+  box-shadow: 0 2px 6px rgba(var(--color-dusty-rose-rgb), 0.25);
+}
+
+.btn-rose:hover {
+  background-color: #A36B79;
+  border-color: #A36B79;
+  box-shadow: 0 4px 12px rgba(var(--color-dusty-rose-rgb), 0.35);
+}
+
+/* Outline Button: Refined heritage border */
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-dark-navy);
+  border-color: var(--border-medium);
+}
+
+.btn-outline:hover {
+  background-color: rgba(var(--color-dark-navy-rgb), 0.06);
+  border-color: var(--color-dark-navy);
+  color: var(--color-dark-navy);
+}
+
+/* Subtle Caramel Outline Button */
+.btn-outline-caramel {
+  background-color: transparent;
+  color: var(--color-caramel);
+  border-color: var(--color-caramel);
+}
+
+.btn-outline-caramel:hover {
+  background-color: var(--color-caramel);
+  color: var(--color-latte-foam);
+}
+
+/* Subtle Rose Outline Button */
+.btn-outline-rose {
+  background-color: transparent;
+  color: var(--color-dusty-rose);
+  border-color: var(--color-dusty-rose);
+}
+
+.btn-outline-rose:hover {
+  background-color: var(--color-dusty-rose);
+  color: var(--color-latte-foam);
+}
+
+/* Links: Editorial, elegant, clear, subtle hover */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+.link-editorial {
+  position: relative;
+  color: var(--color-dark-navy);
+  text-decoration: none;
+  display: inline-block;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--border-subtle);
+  transition: border-color var(--transition-base), color var(--transition-base);
+}
+
+.link-editorial:hover {
+  color: var(--color-caramel);
+  border-color: var(--color-caramel);
+}
+
+/* Rose editorial link: Dusty rose accent for literary/BOOKHOUSE contexts */
+.link-rose {
+  position: relative;
+  color: var(--color-dark-cocoa);
+  text-decoration: none;
+  display: inline-block;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--border-rose);
+  transition: border-color var(--transition-base), color var(--transition-base);
+}
+
+.link-rose:hover {
+  color: var(--color-dusty-rose);
+  border-color: var(--color-dusty-rose);
+}
+
+/* ==========================================================================
+   HERITAGE SURFACES, CARDS & CONTAINERS
+   Rich walnut, parchment, warm stone, soft architectural shadows
+   ========================================================================== */
+.container-heritage {
+  width: 100%;
+  max-width: 1230px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.25rem, 4vw, 2.5rem);
+  padding-right: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.card-parchment {
+  background: linear-gradient(180deg, rgba(255,255,255,0.24), rgba(255,255,255,0.02));
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-subtle);
+  transition: box-shadow var(--transition-editorial), border-color var(--transition-base), transform var(--transition-base);
+}
+
+.card-parchment:hover {
+  box-shadow: var(--shadow-elevated);
+  border-color: var(--border-caramel);
+  transform: translateY(-1px);
+}
+
+.card-navy {
+  background-color: var(--color-dark-navy);
+  color: var(--color-caramel);
+  border: 1px solid rgba(var(--color-latte-foam-rgb), 0.12);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-elevated);
+}
+
+.surface-navy {
+  color: var(--color-caramel);
+}
+
+.surface-navy > .container-heritage > :is(h1, h2, h3, h4, h5, h6, p),
+.surface-navy > .container-heritage > :not(.grid) :is(h1, h2, h3, h4, h5, h6, p),
+.surface-navy > .container-heritage > .grid > div:first-child :is(h1, h2, h3, h4, h5, h6, p),
+.card-navy :is(h1, h2, h3, h4, h5, h6, p) {
+  color: var(--color-caramel);
+}
+
+.site-footer,
+.site-footer * {
+  color: #FFFFFF;
+}
+
+.card-cocoa {
+  background-color: var(--color-dark-cocoa);
+  color: var(--color-latte-foam);
+  border: 1px solid rgba(var(--color-caramel-rgb), 0.25);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-elevated);
+}
+
+/* Rose surface card: Dusty Rose accent card for literary, BOOKHOUSE, and café contexts */
+.card-rose {
+  background-color: rgba(var(--color-dusty-rose-rgb), 0.08);
+  border: 1px solid rgba(var(--color-dusty-rose-rgb), 0.3);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-subtle);
+}
+
+/* Warm muted parchment card */
+.card-muted {
+  background-color: var(--bg-surface-muted);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-subtle);
+}
+
+/* Editorial Dividers & Architectural Brass Accents */
+.divider-heritage {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--border-subtle) 25%,
+    var(--border-subtle) 75%,
+    transparent 100%
+  );
+  margin: 2.5rem 0;
+}
+
+.divider-brass {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(var(--color-caramel-rgb), 0.6) 50%,
+    transparent 100%
+  );
+  margin: 2.5rem 0;
+}
+
+/* Dusty Rose divider: Literary and BOOKHOUSE sections */
+.divider-rose {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(var(--color-dusty-rose-rgb), 0.5) 50%,
+    transparent 100%
+  );
+  margin: 2.5rem 0;
+}
+
+/* Badges & Status Details (Seat availability, quiet hours, menu tags) */
+.badge-heritage {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-family: var(--font-accent);
+  font-size: 0.8125rem; /* 13px */
+  letter-spacing: 0.05em;
+  padding: 0.3125rem 0.6875rem;
+  border-radius: var(--radius-sm);
+  background-color: rgba(var(--color-caramel-rgb), 0.12);
+  color: var(--color-dark-cocoa);
+  border: 1px solid rgba(var(--color-caramel-rgb), 0.3);
+}
+
+.badge-rose {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-family: var(--font-accent);
+  font-size: 0.8125rem; /* 13px */
+  letter-spacing: 0.05em;
+  padding: 0.3125rem 0.6875rem;
+  border-radius: var(--radius-sm);
+  background-color: rgba(var(--color-dusty-rose-rgb), 0.15);
+  color: var(--color-dark-navy);
+  border: 1px solid rgba(var(--color-dusty-rose-rgb), 0.35);
+}
+
+.badge-navy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-family: var(--font-accent);
+  font-size: 0.8125rem;
+  letter-spacing: 0.05em;
+  padding: 0.3125rem 0.6875rem;
+  border-radius: var(--radius-sm);
+  background-color: rgba(var(--color-dark-navy-rgb), 0.1);
+  color: var(--color-dark-navy);
+  border: 1px solid rgba(var(--color-dark-navy-rgb), 0.25);
+}
+
+/* Pulser indicator dot for open/closed status */
+.status-pulse {
+  position: relative;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.status-pulse::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background-color: inherit;
+  opacity: 0.3;
+  animation: status-ring 2s ease-out infinite;
+}
+
+@keyframes status-ring {
+  0%   { transform: scale(1); opacity: 0.3; }
+  60%  { transform: scale(1.6); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* Decorative Heritage Section Marker */
+.section-marker {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.section-marker::before,
+.section-marker::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-subtle));
+}
+
+.section-marker::after {
+  background: linear-gradient(90deg, var(--border-subtle), transparent);
+}
+
+/* ==========================================================================
+   6. WEBSITE IMAGE PLAN FOUNDATION (Exactly 8 Planned Images)
+   Art direction frame containers prepared for future image placement.
+   ========================================================================== */
+.image-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-surface-muted);
+  box-shadow: var(--shadow-subtle);
+}
+
+/* Prepared aspect ratios for the 8 planned scenes */
+.aspect-home-hero {
+  aspect-ratio: 16 / 9; /* Wide interior establishing architecture */
+}
+
+.aspect-coffee-intro {
+  aspect-ratio: 4 / 3; /* Close-up coffee tactile photograph */
+}
+
+.aspect-bookhouse-preview {
+  aspect-ratio: 4 / 5; /* Quiet reading corner */
+}
+
+.aspect-our-story {
+  aspect-ratio: 3 / 2; /* Still-life with books and writing materials */
+}
+
+.aspect-bookhouse-page {
+  aspect-ratio: 16 / 10; /* Dedicated reading-library interior */
+}
+
+.aspect-workspace-page {
+  aspect-ratio: 16 / 10; /* Heritage study hall focus room */
+}
+
+.aspect-visit-page {
+  aspect-ratio: 16 / 9; /* European heritage exterior */
+}
+
+.aspect-menu-page {
+  aspect-ratio: 4 / 3; /* Food-and-coffee table / bakery atmosphere */
+}
+
+/* Refined Image Placeholder Frame (Used while images are pending) */
+.image-placeholder-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  background-color: #EFE2CF;
+  border: 1px dashed rgba(var(--color-caramel-rgb), 0.5);
+  border-radius: var(--radius-md);
+  color: var(--color-dark-cocoa);
+}
+
+.image-placeholder-frame .placeholder-label {
+  font-family: var(--font-accent);
+  font-size: 0.9375rem; /* 15px — readable label size */
+  letter-spacing: 0.06em;
+  color: var(--color-dark-navy);
+  margin-bottom: 0.5rem;
+}
+
+.image-placeholder-frame .placeholder-desc {
+  font-family: var(--font-body);
+  font-size: 0.875rem; /* 14px minimum readable */
+  color: var(--text-muted);
+  max-width: 42ch;
+}
+
+/* ==========================================================================
+   UTILITY: FOCUS INDICATORS (Keyboard Accessibility)
+   ========================================================================== */
+*:focus-visible {
+  outline: 2px solid var(--color-caramel);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ==========================================================================
+   UTILITY: PROSE COLUMN WIDTHS
+   ========================================================================== */
+.prose-editorial {
+  max-width: 68ch;
+  font-family: var(--font-body);
+  font-size: 1.0625rem; /* 17px */
+  line-height: 1.72;
+  color: var(--text-body);
+}
+
+.prose-editorial p + p {
+  margin-top: 1.25rem;
+}
+
+/* ==========================================================================
+   UTILITY: SECTION VERTICAL RHYTHM
+   ========================================================================== */
+.section-sm   { padding-top: 3.5rem;  padding-bottom: 3.5rem; }
+.section-md   { padding-top: 5rem;    padding-bottom: 5rem; }
+.section-lg   { padding-top: 7rem;    padding-bottom: 7rem; }
+.section-xl   { padding-top: 9rem;    padding-bottom: 9rem; }
+
+@media (min-width: 768px) {
+  .section-sm   { padding-top: 4.5rem;  padding-bottom: 4.5rem; }
+  .section-md   { padding-top: 6.5rem;  padding-bottom: 6.5rem; }
+  .section-lg   { padding-top: 8.5rem;  padding-bottom: 8.5rem; }
+  .section-xl   { padding-top: 11rem;   padding-bottom: 11rem; }
+}
+
+/* ==========================================================================
+   UTILITY: EYEBROW LABEL — Consistent section eyebrow treatment
+   ========================================================================== */
+.eyebrow {
+  font-family: var(--font-accent);
+  font-size: 0.75rem; /* 12px */
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-caramel);
+  display: block;
+  margin-bottom: 0.75rem;
+  user-select: none;
+}
+
+.eyebrow-rose {
+  font-family: var(--font-accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-dusty-rose);
+  display: block;
+  margin-bottom: 0.75rem;
+  user-select: none;
+}
+
+.eyebrow-navy {
+  font-family: var(--font-accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-dark-navy);
+  display: block;
+  margin-bottom: 0.75rem;
+  user-select: none;
+}
+
+/* ==========================================================================
+   UTILITY: CARAMEL ACCENT LINE — editorial brass accent element
+   ========================================================================== */
+.accent-line-caramel {
+  display: block;
+  width: 2.5rem;
+  height: 2px;
+  background-color: var(--color-caramel);
+  border-radius: 1px;
+  margin-bottom: 1.25rem;
+}
+
+.accent-line-rose {
+  display: block;
+  width: 2.5rem;
+  height: 2px;
+  background-color: var(--color-dusty-rose);
+  border-radius: 1px;
+  margin-bottom: 1.25rem;
+}
+
+/* ==========================================================================
+   SCROLLBAR STYLING — heritage-compatible custom scrollbar
+   ========================================================================== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(var(--color-dark-navy-rgb), 0.25);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(var(--color-caramel-rgb), 0.5);
+}
+
+/* ==========================================================================
+   NO-SCROLLBAR UTILITY (Used in MenuCategoryNav horizontal scroll)
+   ========================================================================== */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .visit-experience-grid .experience-card-title {
+    font-size: 1.25rem;
+  }
+
+  .visit-experience-grid .visit-experience-cta {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-size: 0.75rem;
+  }
+}
